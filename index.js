@@ -1,3 +1,14 @@
+// @flow
+const accessiblityRules = {
+  // Disable these accessibility rules until general web accessibility is prioritised
+  'jsx-a11y/interactive-supports-focus': 0,
+  'jsx-a11y/click-events-have-key-events': 0,
+  'jsx-a11y/no-noninteractive-element-interactions': 0,
+  'jsx-a11y/no-static-element-interactions': 0,
+  'jsx-a11y/label-has-for': 0,
+  'jsx-a11y/anchor-is-valid': 0,
+};
+
 module.exports = {
   // babel-eslint allows us to include type-hints
   parser: 'babel-eslint',
@@ -21,7 +32,6 @@ module.exports = {
     'prettier',
     'prettier/flowtype',
     'prettier/react',
-
   ],
 
   // Allows assuming the presence of globals provided by all these environments
@@ -33,19 +43,10 @@ module.exports = {
     jest: true,
   },
 
-  plugins: [
-    'flowtype',
-    'prettier',
-  ],
+  plugins: ['flowtype', 'prettier'],
 
   rules: {
-    // Disable these accessibility rules until general web accessibility is prioritised
-    'jsx-a11y/interactive-supports-focus': 0,
-    'jsx-a11y/click-events-have-key-events': 0,
-    'jsx-a11y/no-noninteractive-element-interactions': 0,
-    'jsx-a11y/no-static-element-interactions': 0,
-    'jsx-a11y/label-has-for': 0,
-    'jsx-a11y/anchor-is-valid': 0,
+    ...accessiblityRules,
 
     // Allows importing from files with explicit '.js' extensions
     'import/extensions': 0,
@@ -68,9 +69,6 @@ module.exports = {
     // Downgrades bad array keys to a warning
     'react/no-array-index-key': 1,
 
-    // Downgrades unescaped HTML entity literals to a warning
-    'react/no-unescaped-entities': 1,
-
     // Prevent assigning to arguments, but allow modifying them.
     'no-param-reassign': [2, { props: false }],
 
@@ -84,34 +82,16 @@ module.exports = {
     ],
 
     // Require all javascript files to include a flowtype annotation
-    "flowtype/require-valid-file-annotation": [
-      1,
-      "always"
-    ],
+    'flowtype/require-valid-file-annotation': [1, 'always'],
 
     // Allow optional react props to still have an entry in defaultProps
-    "react/default-props-match-prop-types": 0,
-
-    // Relax rules about <a /> tags
-    "jsx-a11y/anchor-is-valid": 0,
-
-    // Relax accessibility rules about onClick handling and keyboard handling
-    "jsx-a11y/click-events-have-key-events": 0,
-
-    // Relax accessibility rules about elements without a 'role' attribute
-    "jsx-a11y/no-static-element-interactions": 0,
-
-    // Relax accessibility rules about which elements may receive clicks
-    "jsx-a11y/no-noninteractive-element-interactions": 0,
-
-    // Relax accessibility rules about label attributes      
-    "jsx-a11y/label-has-for": 0,
+    'react/default-props-match-prop-types': 0,
 
     // Only forbid unescaped HTML entities if they are genuinely confusing
     // (This intentionally allows apostrophes)
-    "react/no-unescaped-entities": ["error", { "forbid": ['<', '>', '{', '}', '`'] }],
+    'react/no-unescaped-entities': ['error', { forbid: ['<', '>', '{', '}', '`'] }],
 
     // Allow labels to have dynamic content, even when it may not include a form control
-    "jsx-a11y/label-has-associated-control": 0,
+    'jsx-a11y/label-has-associated-control': 0,
   },
 };
